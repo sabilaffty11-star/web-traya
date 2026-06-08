@@ -355,7 +355,7 @@
             </div>
             
             <div class="filter-group">
-                <label>📊 Urutkan</label>
+                <label> Urutkan</label>
                 <select name="sort">
                     <option value="">Terbaru</option>
                     <option value="termurah" {{ request('sort') == 'termurah' ? 'selected' : '' }}>Termurah</option>
@@ -371,7 +371,7 @@
         
         @if(request('search') || request('kategori') || request('sort'))
             <div class="search-results">
-                🔍 Menampilkan hasil untuk:
+                 Menampilkan hasil untuk:
                 @if(request('search')) <strong>"{{ request('search') }}"</strong> @endif
                 @if(request('kategori')) - Kategori: <strong>{{ request('kategori') }}</strong> @endif
                 @if(request('sort')) - Urutan: <strong>{{ request('sort') == 'termurah' ? 'Termurah' : (request('sort') == 'termahal' ? 'Termahal' : 'Terbaru') }}</strong> @endif

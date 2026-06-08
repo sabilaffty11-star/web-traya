@@ -66,6 +66,10 @@
             color: #333;
         }
         
+        .nav-auth a:hover {
+            color: #E86F2C;
+        }
+        
         .btn-jual {
             background: #E86F2C;
             color: white !important;
@@ -83,6 +87,10 @@
             display: inline-block;
             color: #E86F2C;
             text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
         }
         
         .product-detail {
@@ -161,6 +169,7 @@
             margin-bottom: 30px;
         }
         
+        /* Tombol Beli / Chat */
         .btn-buy {
             background: #E86F2C;
             color: white;
@@ -180,6 +189,21 @@
             background: #d45a1a;
         }
         
+        .btn-buy-disabled {
+            background: #ccc;
+            color: #666;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: not-allowed;
+            width: 100%;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        /* Tombol Edit & Delete (hanya untuk pemilik) */
         .btn-edit {
             background: #2196f3;
             color: white;
@@ -189,6 +213,10 @@
             font-size: 14px;
             display: inline-block;
             margin-right: 10px;
+        }
+        
+        .btn-edit:hover {
+            background: #0b7dda;
         }
         
         .btn-delete {
@@ -202,11 +230,35 @@
             cursor: pointer;
         }
         
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+        
+        /* Pesan error/alert */
+        .alert-warning {
+            background: #fff3e0;
+            border: 1px solid #ffb74d;
+            color: #e65100;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
         .seller-info {
             background: #f8f8f8;
             padding: 20px;
             border-radius: 12px;
             margin-top: 20px;
+        }
+        
+        .seller-info a {
+            color: #E86F2C;
+            text-decoration: none;
+        }
+        
+        .seller-info a:hover {
+            text-decoration: underline;
         }
         
         .footer {
@@ -227,12 +279,19 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .product-title {
+                font-size: 22px;
+            }
+            .product-price {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Navbar -->
     <div class="navbar">
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
         <div class="nav-menu">
@@ -245,6 +304,7 @@
         <div class="nav-auth">
             @auth
                 <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('chat.index') }}">💬 Pesan</a>
                 <a href="{{ route('products.create') }}" class="btn-jual">+ Jual Barang</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
@@ -261,9 +321,12 @@
 <hr>
 
 <div class="container">
+    <!-- Back Link -->
     <a href="{{ route('products.index') }}" class="back-link">← Kembali ke Daftar Produk</a>
     
+    <!-- Product Detail -->
     <div class="product-detail">
+        <!-- Product Image -->
         <div class="product-image">
             @if($product->gambar)
                 <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama }}">
@@ -272,6 +335,7 @@
             @endif
         </div>
         
+        <!-- Product Info -->
         <div>
             <h1 class="product-title">{{ $product->nama }}</h1>
             <div class="product-price">Rp {{ number_format($product->harga, 0, ',', '.') }}</div>
@@ -282,34 +346,52 @@
                 </span>
             </div>
             
+            <!-- Deskripsi -->
             <div class="product-desc">
                 <h4 style="margin: 20px 0 10px; color: #333;">Deskripsi</h4>
                 <p>{{ $product->deskripsi }}</p>
             </div>
             
+            
             @if($product->status === 'tersedia')
-                <a href="#" class="btn-buy" onclick="alert('Fitur pembelian akan segera hadir!')">Hubungi Penjual</a>
+                @auth
+                    @if(auth()->id() === $product->user_id)
+                        <!-- Ini produk milik sendiri, tidak bisa beli sendiri -->
+                        <div class="alert-warning" style="text-align: center;">
+                             Ini adalah produk Anda. Anda tidak bisa membeli produk sendiri.
+                        </div>
+                    @else
+                        <!-- BISA BELI / CHAT (karena produk orang lain) -->
+                        <a href="{{ route('chat.start', $product->id) }}" class="btn-buy"> Beli / Chat Penjual</a>
+                    @endif
+                @else
+                    <!-- Belum login -->
+                    <a href="{{ route('login') }}" class="btn-buy"> Login untuk Membeli</a>
+                @endauth
             @else
-                <button class="btn-buy" style="background: #ccc; cursor: not-allowed;" disabled>Barang Sudah Terjual</button>
+                <!-- Barang sudah terjual -->
+                <div class="btn-buy-disabled">✗ Barang Sudah Terjual</div>
             @endif
+            
             
             @auth
                 @if(auth()->id() === $product->user_id)
                     <div style="margin-top: 20px;">
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn-edit">✏️ Edit Produk</a>
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn-edit"> Edit Produk</a>
                         <form method="POST" action="{{ route('products.destroy', $product->id) }}" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')">🗑️ Hapus Produk</button>
+                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')"> Hapus Produk</button>
                         </form>
                     </div>
                 @endif
             @endauth
             
+            <!-- Informasi Penjual -->
             <div class="seller-info">
-                <strong>👤 Informasi Penjual</strong>
+                <strong> Informasi Penjual</strong>
                 <p style="margin-top: 8px;">
-                    <a href="{{ route('seller.show', $product->user_id) }}" style="color: #E86F2C; text-decoration: none; font-weight: 600;">
+                    <a href="{{ route('seller.show', $product->user_id) }}">
                         {{ $product->user->name ?? 'Unknown' }}
                     </a>
                 </p>
@@ -324,6 +406,7 @@
     </div>
 </div>
 
+<!-- Footer -->
 <div class="footer">
     © 2026 TRAYA - Barang Bekas, Cerita Baru.
 </div>
