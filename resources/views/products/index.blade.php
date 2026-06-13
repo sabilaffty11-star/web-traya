@@ -319,7 +319,8 @@
         <div class="nav-auth">
             @auth
                 <a href="{{ route('dashboard') }}">Dashboard</a>
-                <a href="{{ route('products.create') }}" class="btn-jual">+ Jual Barang</a>
+                <a href="{{ route('chat.index') }}">Pesan</a>
+                <a href="{{ route('products.create') }}" class="btn-jual">Jual Barang</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
                     <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
@@ -338,12 +339,12 @@
     <div class="filter-section">
         <form method="GET" action="{{ route('products.index') }}" class="filter-form">
             <div class="filter-group">
-                <label>🔍 Cari Produk</label>
+                <label>Cari Produk</label>
                 <input type="text" name="search" placeholder="Cari nama atau deskripsi..." value="{{ request('search') }}">
             </div>
             
             <div class="filter-group">
-                <label>📂 Kategori</label>
+                <label>Kategori</label>
                 <select name="kategori">
                     <option value="">Semua Kategori</option>
                     @foreach($kategoris as $kat)
@@ -355,7 +356,7 @@
             </div>
             
             <div class="filter-group">
-                <label> Urutkan</label>
+                <label>Urutkan</label>
                 <select name="sort">
                     <option value="">Terbaru</option>
                     <option value="termurah" {{ request('sort') == 'termurah' ? 'selected' : '' }}>Termurah</option>
@@ -371,11 +372,16 @@
         
         @if(request('search') || request('kategori') || request('sort'))
             <div class="search-results">
-                 Menampilkan hasil untuk:
+                Menampilkan hasil untuk:
                 @if(request('search')) <strong>"{{ request('search') }}"</strong> @endif
                 @if(request('kategori')) - Kategori: <strong>{{ request('kategori') }}</strong> @endif
-                @if(request('sort')) - Urutan: <strong>{{ request('sort') == 'termurah' ? 'Termurah' : (request('sort') == 'termahal' ? 'Termahal' : 'Terbaru') }}</strong> @endif
-                <a href="{{ route('products.index') }}" style="float: right; color: #E86F2C;">✖ Hapus filter</a>
+                @if(request('sort')) - Urutan: <strong>
+                    @if(request('sort') == 'termurah') Termurah
+                    @elseif(request('sort') == 'termahal') Termahal
+                    @else Terbaru
+                    @endif
+                </strong> @endif
+                <a href="{{ route('products.index') }}" style="float: right; color: #E86F2C;">Hapus filter</a>
             </div>
         @endif
     </div>
@@ -393,7 +399,7 @@
                     @if($product->gambar)
                         <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama }}">
                     @else
-                        📦
+                        Gambar
                     @endif
                 </div>
                 <div class="product-info">
@@ -412,7 +418,7 @@
         </div>
     @else
         <div class="empty-state">
-            <p style="font-size: 18px; color: #999;">😞 Produk tidak ditemukan</p>
+            <p style="font-size: 18px; color: #999;">Produk tidak ditemukan</p>
             <p style="color: #666; margin-top: 10px;">Coba kata kunci lain atau reset filter</p>
             <a href="{{ route('products.index') }}" class="btn-detail" style="margin-top: 15px; display: inline-block;">Reset Filter</a>
         </div>

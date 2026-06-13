@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Kerja - TRAYA</title>
+    <title>Tentang Kami - TRAYA</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         * {
@@ -88,56 +88,76 @@
             margin-bottom: 10px;
         }
         
-        .page-header p {
-            color: #666;
+        .about-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .about-text {
+            color: #444;
+            line-height: 1.8;
             font-size: 16px;
         }
         
-        .steps-container {
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .mission-vision {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 30px;
             margin: 40px 0;
         }
         
-        .step-card {
+        .mission-card, .vision-card {
             background: white;
             border-radius: 16px;
             padding: 30px;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
         }
         
-        .step-card:hover {
-            transform: translateY(-4px);
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: #E86F2C;
-            color: white;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .card-title {
             font-size: 24px;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            font-weight: 600;
+            color: #E86F2C;
+            margin-bottom: 15px;
         }
         
-        .step-title {
-            font-size: 20px;
+        .card-text {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .value-title {
+            font-size: 18px;
             font-weight: 600;
-            color: #333;
+            color: #E86F2C;
             margin-bottom: 10px;
         }
         
-        .step-desc {
+        .value-desc {
+            font-size: 13px;
             color: #666;
-            font-size: 14px;
-            line-height: 1.6;
         }
         
         .footer {
@@ -154,6 +174,9 @@
             .navbar {
                 flex-direction: column;
                 text-align: center;
+            }
+            .mission-vision {
+                grid-template-columns: 1fr;
             }
             .page-header h1 {
                 font-size: 28px;
@@ -194,41 +217,49 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>Cara Kerja TRAYA</h1>
-        <p>Mudah, cepat, dan aman. Ikuti langkah-langkah berikut</p>
+        <h1>Tentang TRAYA</h1>
+        <p>Barang Bekas, Cerita Baru</p>
     </div>
     
-    <div class="steps-container">
-        <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Daftar Akun</div>
-            <div class="step-desc">
-                Buat akun gratis di TRAYA dengan email aktif. Proses cepat dan mudah.
+    <div class="about-content">
+        <div class="about-text">
+            <p>TRAYA adalah platform jual beli barang bekas yang lahir dari kepedulian terhadap lingkungan dan keinginan untuk memberikan nilai baru pada barang-barang yang masih layak pakai.</p>
+            <p>Kami percaya bahwa setiap barang memiliki cerita dan masih bisa bermanfaat bagi orang lain. Melalui TRAYA, kami ingin membantu mengurangi limbah barang bekas sekaligus membantu masyarakat mendapatkan barang berkualitas dengan harga terjangkau.</p>
+            <p>Didirikan pada tahun 2024, TRAYA telah membantu ribuan orang menjual barang bekas mereka dan menemukan barang yang mereka butuhkan dengan harga bersahabat.</p>
+        </div>
+    </div>
+    
+    <div class="mission-vision">
+        <div class="mission-card">
+            <div class="card-title">Misi Kami</div>
+            <div class="card-text">
+                Mengurangi limbah barang bekas dengan memfasilitasi jual beli barang bekas yang mudah, aman, dan terpercaya.
             </div>
         </div>
-        
-        <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Jual Barang</div>
-            <div class="step-desc">
-                Upload foto, tulis deskripsi, dan tentukan harga untuk barang bekas Anda.
+        <div class="vision-card">
+            <div class="card-title">Visi Kami</div>
+            <div class="card-text">
+                Menjadi platform jual beli barang bekas terbesar di Indonesia yang mendukung gaya hidup berkelanjutan.
             </div>
         </div>
-        
-        <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Tunggu Pembeli</div>
-            <div class="step-desc">
-                Pembeli akan menghubungi Anda melalui chat. Jawab dengan cepat.
-            </div>
+    </div>
+    
+    <div class="values-container">
+        <div class="value-card">
+            <div class="value-title">Ramah Lingkungan</div>
+            <div class="value-desc">Mengurangi limbah dengan memperpanjang umur barang</div>
         </div>
-        
-        <div class="step-card">
-            <div class="step-number">4</div>
-            <div class="step-title">Transaksi Aman</div>
-            <div class="step-desc">
-                Lakukan transaksi dengan aman. Tentukan metode pembayaran dan pengiriman.
-            </div>
+        <div class="value-card">
+            <div class="value-title">Terjangkau</div>
+            <div class="value-desc">Barang berkualitas dengan harga bersahabat</div>
+        </div>
+        <div class="value-card">
+            <div class="value-title">Aman</div>
+            <div class="value-desc">Sistem verifikasi dan ulasan terpercaya</div>
+        </div>
+        <div class="value-card">
+            <div class="value-title">Mudah</div>
+            <div class="value-desc">Proses jual beli yang simpel dan cepat</div>
         </div>
     </div>
 </div>
