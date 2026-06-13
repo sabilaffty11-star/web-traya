@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Kerja - TRAYA</title>
+    <title>Pesanan Saya - TRAYA</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         * {
@@ -169,7 +169,28 @@
         <div class="nav-menu">
             <a href="{{ route('home') }}">Beranda</a>
             <a href="{{ route('products.index') }}">Shop</a>
-            <a href="{{ route('cara-kerja') }}">Cara Kerja</a>
+            @auth
+                <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+                <a href="{{ route('chat.index') }}">Chat</a>
+          <div class="nav-menu">
+    <a href="{{ route('home') }}">Beranda</a>
+    <a href="{{ route('products.index') }}">Shop</a>
+    
+    @auth
+        <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+        <a href="{{ route('chat.index') }}">Chat</a>
+    @else
+        <a href="{{ route('login') }}">Pesanan Saya</a>
+        <a href="{{ route('login') }}">Chat</a>
+    @endauth
+    
+    <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
+    <a href="{{ route('bantuan') }}">Bantuan</a>
+</div>
+  @else
+                <a href="{{ route('login') }}">Pesanan Saya</a>
+                <a href="{{ route('login') }}">Chat</a>
+            @endauth
             <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
             <a href="{{ route('bantuan') }}">Bantuan</a>
         </div>
@@ -194,7 +215,7 @@
 
 <div class="container">
     <div class="page-header">
-        <h1>Cara Kerja TRAYA</h1>
+        <h1>Pesanan Saya TRAYA</h1>
         <p>Mudah, cepat, dan aman. Ikuti langkah-langkah berikut</p>
     </div>
     

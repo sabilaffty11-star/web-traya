@@ -287,16 +287,25 @@
 <body>
 
 <div class="container">
-    <!-- Navbar -->
     <div class="navbar">
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
-        <div class="nav-menu">
-            <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Shop</a>
-            <a href="#">Cara Kerja</a>
-            <a href="#">Tentang Kami</a>
-            <a href="#">Bantuan</a>
-        </div>
+        
+<div class="nav-menu">
+    <a href="{{ route('home') }}">Beranda</a>
+    <a href="{{ route('products.index') }}">Shop</a>
+    
+    @auth
+        <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+        <a href="{{ route('chat.index') }}">Chat</a>
+    @else
+        <a href="{{ route('login') }}">Pesanan Saya</a>
+        <a href="{{ route('login') }}">Chat</a>
+    @endauth
+    
+    <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
+    <a href="{{ route('bantuan') }}">Bantuan</a>
+</div>
+        
         <div class="nav-auth">
             <a href="{{ route('Profil') }}">Profil</a>
             <a href="{{ route('chat.index') }}">Pesan</a>
@@ -312,13 +321,11 @@
 <hr>
 
 <div class="container">
-    <!-- Welcome Banner -->
     <div class="welcome-banner">
         <h1>Selamat datang, {{ Auth::user()->name }}!</h1>
         <p>Kelola produk dan transaksi Anda di sini</p>
     </div>
     
-    <!-- Stats Cards -->
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-value">{{ Auth::user()->products->count() }}</div>
@@ -338,7 +345,6 @@
         </div>
     </div>
     
-    <!-- My Products Section -->
     <div class="section-title">
         <span>Produk Saya</span>
         <a href="{{ route('products.create') }}" class="btn-primary">Jual Barang Baru</a>

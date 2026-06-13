@@ -220,6 +220,29 @@
             height: auto;
         }
         
+        .about-section {
+            padding: 60px 0;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
         .footer {
             text-align: center;
             padding: 24px 0;
@@ -261,13 +284,23 @@
             <img src="{{ asset('image/logo.png') }}" alt="Logo" class="logo-img" onerror="this.style.display='none'">
             <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
         </div>
-        <div class="nav-menu">
-            <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Shop</a>
-            <a href="#">Cara Kerja</a>
-            <a href="#">Tentang Kami</a>
-            <a href="#">Bantuan</a>
-        </div>
+        
+<div class="nav-menu">
+    <a href="{{ route('home') }}">Beranda</a>
+    <a href="{{ route('products.index') }}">Shop</a>
+    
+    @auth
+        <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+        <a href="{{ route('chat.index') }}">Chat</a>
+    @else
+        <a href="{{ route('login') }}">Pesanan Saya</a>
+        <a href="{{ route('login') }}">Chat</a>
+    @endauth
+    
+    <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
+    <a href="{{ route('bantuan') }}">Bantuan</a>
+</div>
+        
         <div class="nav-auth">
             @auth
                 <a href="{{ route('Profil') }}">Profil</a>
@@ -290,8 +323,14 @@
     <div class="hero">
         <h1>Barang Bekas, <span>Cerita Baru</span></h1>
         <p>Temukan barang berkualitas dengan harga terjangkau<br>atau jual barang yang sudah tidak terpakai.</p>
+        
         <div class="hero-buttons">
-            <a href="{{ route('products.index') }}" class="btn-secondary">Mulai Belanja</a>
+            @auth
+                <a href="{{ route('products.index') }}" class="btn-primary">Mulai Belanja</a>
+            @else
+                <a href="{{ route('register') }}" class="btn-primary">Daftar Sekarang</a>
+                <a href="{{ route('products.index') }}" class="btn-secondary">Mulai Belanja</a>
+            @endauth
         </div>
     </div>
 </div>

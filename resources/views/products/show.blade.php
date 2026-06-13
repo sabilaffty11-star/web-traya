@@ -294,13 +294,21 @@
     <!-- Navbar -->
     <div class="navbar">
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
-        <div class="nav-menu">
-            <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Shop</a>
-            <a href="#">Cara Kerja</a>
-            <a href="#">Tentang Kami</a>
-            <a href="#">Bantuan</a>
-        </div>
+<div class="nav-menu">
+    <a href="{{ route('home') }}">Beranda</a>
+    <a href="{{ route('products.index') }}">Shop</a>
+    
+    @auth
+        <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+        <a href="{{ route('chat.index') }}">Chat</a>
+    @else
+        <a href="{{ route('login') }}">Pesanan Saya</a>
+        <a href="{{ route('login') }}">Chat</a>
+    @endauth
+    
+    <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
+    <a href="{{ route('bantuan') }}">Bantuan</a>
+</div>
         <div class="nav-auth">
             @auth
                 <a href="{{ route('Profil') }}">Profil</a>
@@ -353,25 +361,33 @@
             </div>
             
             
-            @if($product->status === 'tersedia')
-                @auth
-                    @if(auth()->id() === $product->user_id)
-                        <!-- Ini produk milik sendiri, tidak bisa beli sendiri -->
-                        <div class="alert-warning" style="text-align: center;">
-                             Ini adalah produk Anda. Anda tidak bisa membeli produk sendiri.
-                        </div>
-                    @else
-                        <!-- BISA BELI / CHAT (karena produk orang lain) -->
-                        <a href="{{ route('chat.start', $product->id) }}" class="btn-buy"> Beli / Chat Penjual</a>
-                    @endif
-                @else
-                    <!-- Belum login -->
-                    <a href="{{ route('login') }}" class="btn-buy"> Login untuk Membeli</a>
-                @endauth
-            @else
-                <!-- Barang sudah terjual -->
-                <div class="btn-buy-disabled">✗ Barang Sudah Terjual</div>
-            @endif
+@if($product->status === 'tersedia')
+    @auth
+        @if(auth()->id() === $product->user_id)
+            <div class="alert-warning" style="text-align: center; background-color: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; border: 1px solid #ffeeba; width: 100%;">
+                Ini adalah produk Anda sendiri.
+            </div>
+        @else
+            <div class="action-buttons-group" style="display: flex; gap: 12px; width: 100%; margin-top: 15px;">
+                <a href="{{ route('order.checkout', $product->id) }}" class="btn-primary" style="flex: 1; text-align: center; background: #E86F2C; color: white; padding: 12px 20px; border-radius: 30px; text-decoration: none; font-weight: 500;">
+                    Beli Sekarang
+                </a>
+                
+                <a href="{{ route('chat.start', $product->id) }}" class="btn-secondary" style="flex: 1; text-align: center; background: white; color: #E86F2C; padding: 12px 20px; border-radius: 30px; text-decoration: none; border: 1.5px solid #E86F2C; font-weight: 500;">
+                    Chat Penjual
+                </a>
+            </div>
+        @endif
+    @else
+        <a href="{{ route('login') }}" class="btn-primary" style="display: block; text-align: center; background: #E86F2C; color: white; padding: 12px; border-radius: 30px; text-decoration: none; font-weight: 500; width: 100%;">
+            Login untuk Membeli
+        </a>
+    @endauth
+@else
+    <div class="btn-buy-disabled" style="text-align: center; background: #e2e8f0; color: #64748b; padding: 12px; border-radius: 30px; font-weight: 500; cursor: not-allowed; width: 100%;">
+        ✗ Barang Sudah Terjual
+    </div>
+@endif
             
             
             @auth

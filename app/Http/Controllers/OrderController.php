@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     
     // Tampilkan halaman checkout
     public function checkout($productId)
@@ -43,7 +43,7 @@ class OrderController extends Controller
         
         $request->validate([
             'payment_method' => 'required|in:cod,transfer',
-            'shipping_address' => 'required|min:10',
+            'shipping_address' => 'required|min:3',
             'phone_number' => 'required|min:10|max:15',
             'notes' => 'nullable|max:500'
         ]);

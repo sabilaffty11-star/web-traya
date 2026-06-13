@@ -187,13 +187,21 @@
 <div class="container">
     <div class="navbar">
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
-        <div class="nav-menu">
-            <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Shop</a>
-            <a href="{{ route('cara-kerja') }}">Cara Kerja</a>
-            <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
-            <a href="{{ route('bantuan') }}">Bantuan</a>
-        </div>
+<div class="nav-menu">
+    <a href="{{ route('home') }}">Beranda</a>
+    <a href="{{ route('products.index') }}">Shop</a>
+    
+    @auth
+        <a href="{{ route('order.my-orders') }}">Pesanan Saya</a>
+        <a href="{{ route('chat.index') }}">Chat</a>
+    @else
+        <a href="{{ route('login') }}">Pesanan Saya</a>
+        <a href="{{ route('login') }}">Chat</a>
+    @endauth
+    
+    <a href="{{ route('tentang-kami') }}">Tentang Kami</a>
+    <a href="{{ route('bantuan') }}">Bantuan</a>
+</div>
         <div class="nav-auth">
             @auth
                 <a href="{{ route('Profil') }}">Profil</a>
