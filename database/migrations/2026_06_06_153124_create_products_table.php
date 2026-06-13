@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->integer('harga');
-            $table->string('kategori');
+            $table->string('Shop');
             $table->string('gambar')->nullable();
             $table->enum('status', ['tersedia', 'terjual'])->default('tersedia');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

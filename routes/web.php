@@ -35,11 +35,11 @@ Route::get('/produk/{id}', [ProductController::class, 'show'])->name('products.s
 // Profil penjual (bisa diakses semua orang)
 Route::get('/penjual/{id}', [ProductController::class, 'sellerProfile'])->name('seller.show');
 
-// ==================== ROUTE DASHBOARD ====================
+// ==================== ROUTE Profil ====================
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/Profil', function () {
+    return view('Profil');
+})->middleware(['auth', 'verified'])->name('Profil');
 
 // ==================== ROUTE YANG BUTUH LOGIN (AUTH) ====================
 

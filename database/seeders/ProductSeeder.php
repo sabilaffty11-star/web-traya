@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Hoodie Size L',
             'deskripsi' => 'Hoodie kondisi masih bagus',
             'harga' => 250000,
-            'kategori' => 'Jacket',
+            'Shop' => 'Jacket',
             'user_id' => $user->id,
             'status' => 'tersedia'
         ]);
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Blouse',
             'deskripsi' => 'Size M, Pemakaian 4 Hari',
             'harga' => 350000,
-            'kategori' => 'Atasan',
+            'Shop' => 'Atasan',
             'user_id' => $user->id,
             'status' => 'tersedia'
         ]);
@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
             'nama' => 'Lose Pants',
             'deskripsi' => 'Size 37',
             'harga' => 2000000,
-            'kategori' => 'Celana',
+            'Shop' => 'Celana',
             'user_id' => $user->id,
             'status' => 'tersedia'
         ]);

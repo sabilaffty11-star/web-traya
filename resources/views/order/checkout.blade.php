@@ -66,7 +66,7 @@
             </div>
             <div class="product-details">
                 <h3>{{ $product->nama }}</h3>
-                <p style="color: #888;">{{ $product->kategori }}</p>
+                <p style="color: #888;">{{ $product->Shop }}</p>
                 <div class="product-price">Rp {{ number_format($product->harga, 0, ',', '.') }}</div>
             </div>
         </div>

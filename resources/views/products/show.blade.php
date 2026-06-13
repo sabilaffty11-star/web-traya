@@ -296,14 +296,14 @@
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
         <div class="nav-menu">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Kategori</a>
+            <a href="{{ route('products.index') }}">Shop</a>
             <a href="#">Cara Kerja</a>
             <a href="#">Tentang Kami</a>
             <a href="#">Bantuan</a>
         </div>
         <div class="nav-auth">
             @auth
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('Profil') }}">Profil</a>
                 <a href="{{ route('chat.index') }}">💬 Pesan</a>
                 <a href="{{ route('products.create') }}" class="btn-jual">+ Jual Barang</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -340,7 +340,7 @@
             <h1 class="product-title">{{ $product->nama }}</h1>
             <div class="product-price">Rp {{ number_format($product->harga, 0, ',', '.') }}</div>
             <div>
-                <span class="product-category">{{ $product->kategori }}</span>
+                <span class="product-category">{{ $product->Shop }}</span>
                 <span class="product-status status-{{ $product->status === 'tersedia' ? 'tersedia' : 'terjual' }}">
                     {{ $product->status === 'tersedia' ? '✓ Tersedia' : '✗ Terjual' }}
                 </span>

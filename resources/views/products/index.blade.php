@@ -311,14 +311,14 @@
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
         <div class="nav-menu">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}" class="active">Kategori</a>
+            <a href="{{ route('products.index') }}" class="active">Shop</a>
             <a href="#">Cara Kerja</a>
             <a href="#">Tentang Kami</a>
             <a href="#">Bantuan</a>
         </div>
         <div class="nav-auth">
             @auth
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('Profil') }}">Profil</a>
                 <a href="{{ route('chat.index') }}">Pesan</a>
                 <a href="{{ route('products.create') }}" class="btn-jual">Jual Barang</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -344,11 +344,11 @@
             </div>
             
             <div class="filter-group">
-                <label>Kategori</label>
-                <select name="kategori">
-                    <option value="">Semua Kategori</option>
-                    @foreach($kategoris as $kat)
-                        <option value="{{ $kat }}" {{ request('kategori') == $kat ? 'selected' : '' }}>
+                <label>Shop</label>
+                <select name="Shop">
+                    <option value="">Semua Shop</option>
+                    @foreach($Shops as $kat)
+                        <option value="{{ $kat }}" {{ request('Shop') == $kat ? 'selected' : '' }}>
                             {{ $kat }}
                         </option>
                     @endforeach
@@ -370,11 +370,11 @@
             </div>
         </form>
         
-        @if(request('search') || request('kategori') || request('sort'))
+        @if(request('search') || request('Shop') || request('sort'))
             <div class="search-results">
                 Menampilkan hasil untuk:
                 @if(request('search')) <strong>"{{ request('search') }}"</strong> @endif
-                @if(request('kategori')) - Kategori: <strong>{{ request('kategori') }}</strong> @endif
+                @if(request('Shop')) - Shop: <strong>{{ request('Shop') }}</strong> @endif
                 @if(request('sort')) - Urutan: <strong>
                     @if(request('sort') == 'termurah') Termurah
                     @elseif(request('sort') == 'termahal') Termahal
@@ -405,7 +405,7 @@
                 <div class="product-info">
                     <h3 class="product-title">{{ $product->nama }}</h3>
                     <div class="product-price">Rp {{ number_format($product->harga, 0, ',', '.') }}</div>
-                    <div class="product-category">{{ $product->kategori }}</div>
+                    <div class="product-category">{{ $product->Shop }}</div>
                     <p class="product-desc">{{ Str::limit($product->deskripsi, 80) }}</p>
                     <a href="{{ route('products.show', $product->id) }}" class="btn-detail">Lihat Detail</a>
                 </div>

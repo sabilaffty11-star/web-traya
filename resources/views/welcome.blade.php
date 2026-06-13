@@ -263,14 +263,14 @@
         </div>
         <div class="nav-menu">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Kategori</a>
+            <a href="{{ route('products.index') }}">Shop</a>
             <a href="#">Cara Kerja</a>
             <a href="#">Tentang Kami</a>
             <a href="#">Bantuan</a>
         </div>
         <div class="nav-auth">
             @auth
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('Profil') }}">Profil</a>
                 <a href="{{ route('products.create') }}" class="btn-jual">+ Jual Barang</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
@@ -291,7 +291,6 @@
         <h1>Barang Bekas, <span>Cerita Baru</span></h1>
         <p>Temukan barang berkualitas dengan harga terjangkau<br>atau jual barang yang sudah tidak terpakai.</p>
         <div class="hero-buttons">
-            <a href="{{ route('register') }}" class="btn-primary">Daftar Sekarang</a>
             <a href="{{ route('products.index') }}" class="btn-secondary">Mulai Belanja</a>
         </div>
     </div>

@@ -172,15 +172,15 @@
             </div>
             
             <div class="form-group">
-                <label for="kategori">Kategori *</label>
-                <select id="kategori" name="kategori" required>
-                    <option value="">Pilih Kategori</option>
-                    <option value="Elektronik" {{ old('kategori') == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
-                    <option value="Fashion" {{ old('kategori') == 'Fashion' ? 'selected' : '' }}>Fashion</option>
-                    <option value="Furniture" {{ old('kategori') == 'Furniture' ? 'selected' : '' }}>Furniture</option>
-                    <option value="Buku" {{ old('kategori') == 'Buku' ? 'selected' : '' }}>Buku</option>
-                    <option value="Olahraga" {{ old('kategori') == 'Olahraga' ? 'selected' : '' }}>Olahraga</option>
-                    <option value="Lainnya" {{ old('kategori') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                <label for="Shop">Shop *</label>
+                <select id="Shop" name="Shop" required>
+                    <option value="">Pilih Shop</option>
+                    <option value="Elektronik" {{ old('Shop') == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                    <option value="Fashion" {{ old('Shop') == 'Fashion' ? 'selected' : '' }}>Fashion</option>
+                    <option value="Furniture" {{ old('Shop') == 'Furniture' ? 'selected' : '' }}>Furniture</option>
+                    <option value="Buku" {{ old('Shop') == 'Buku' ? 'selected' : '' }}>Buku</option>
+                    <option value="Olahraga" {{ old('Shop') == 'Olahraga' ? 'selected' : '' }}>Olahraga</option>
+                    <option value="Lainnya" {{ old('Shop') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                 </select>
             </div>
             

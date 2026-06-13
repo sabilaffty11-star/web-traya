@@ -178,15 +178,15 @@
             </div>
             
             <div class="form-group">
-                <label for="kategori">Kategori *</label>
-                <select id="kategori" name="kategori" required>
-                    <option value="">Pilih Kategori</option>
-                    <option value="Elektronik" {{ old('kategori', $product->kategori) == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
-                    <option value="Fashion" {{ old('kategori', $product->kategori) == 'Fashion' ? 'selected' : '' }}>Fashion</option>
-                    <option value="Furniture" {{ old('kategori', $product->kategori) == 'Furniture' ? 'selected' : '' }}>Furniture</option>
-                    <option value="Buku" {{ old('kategori', $product->kategori) == 'Buku' ? 'selected' : '' }}>Buku</option>
-                    <option value="Olahraga" {{ old('kategori', $product->kategori) == 'Olahraga' ? 'selected' : '' }}>Olahraga</option>
-                    <option value="Lainnya" {{ old('kategori', $product->kategori) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                <label for="Shop">Shop *</label>
+                <select id="Shop" name="Shop" required>
+                    <option value="">Pilih Shop</option>
+                    <option value="Elektronik" {{ old('Shop', $product->Shop) == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                    <option value="Fashion" {{ old('Shop', $product->Shop) == 'Fashion' ? 'selected' : '' }}>Fashion</option>
+                    <option value="Furniture" {{ old('Shop', $product->Shop) == 'Furniture' ? 'selected' : '' }}>Furniture</option>
+                    <option value="Buku" {{ old('Shop', $product->Shop) == 'Buku' ? 'selected' : '' }}>Buku</option>
+                    <option value="Olahraga" {{ old('Shop', $product->Shop) == 'Olahraga' ? 'selected' : '' }}>Olahraga</option>
+                    <option value="Lainnya" {{ old('Shop', $product->Shop) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                 </select>
             </div>
             

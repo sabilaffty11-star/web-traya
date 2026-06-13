@@ -23,8 +23,8 @@ class ProductController extends Controller
         }
         
         
-        if ($request->has('kategori') && $request->kategori != '') {
-            $query->where('kategori', $request->kategori);
+        if ($request->has('Shop') && $request->Shop != '') {
+            $query->where('Shop', $request->Shop);
         }
         
        
@@ -47,12 +47,12 @@ class ProductController extends Controller
         $products = $query->paginate(12)->withQueryString();
         
         
-        $kategoris = Product::where('status', 'tersedia')
-                            ->select('kategori')
+        $Shops = Product::where('status', 'tersedia')
+                            ->select('Shop')
                             ->distinct()
-                            ->pluck('kategori');
+                            ->pluck('Shop');
         
-        return view('products.index', compact('products', 'kategoris'));
+        return view('products.index', compact('products', 'Shops'));
     }
     
         public function show($id)
@@ -92,7 +92,7 @@ class ProductController extends Controller
             'nama' => 'required|min:3|max:100',
             'deskripsi' => 'required|min:10',
             'harga' => 'required|numeric|min:1000',
-            'kategori' => 'required',
+            'Shop' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
         
@@ -100,7 +100,7 @@ class ProductController extends Controller
         $product->nama = $request->nama;
         $product->deskripsi = $request->deskripsi;
         $product->harga = $request->harga;
-        $product->kategori = $request->kategori;
+        $product->Shop = $request->Shop;
         $product->user_id = Auth::id();
         $product->status = 'tersedia';
         
@@ -138,14 +138,14 @@ class ProductController extends Controller
             'nama' => 'required|min:3|max:100',
             'deskripsi' => 'required|min:10',
             'harga' => 'required|numeric|min:1000',
-            'kategori' => 'required',
+            'Shop' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
         
         $product->nama = $request->nama;
         $product->deskripsi = $request->deskripsi;
         $product->harga = $request->harga;
-        $product->kategori = $request->kategori;
+        $product->Shop = $request->Shop;
         
         if ($request->hasFile('gambar')) {
            

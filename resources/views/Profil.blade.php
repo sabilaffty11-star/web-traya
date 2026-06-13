@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - TRAYA</title>
+    <title>Profil - TRAYA</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         * {
@@ -292,13 +292,13 @@
         <a href="{{ route('home') }}" class="logo-text">TRAYA</a>
         <div class="nav-menu">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('products.index') }}">Kategori</a>
+            <a href="{{ route('products.index') }}">Shop</a>
             <a href="#">Cara Kerja</a>
             <a href="#">Tentang Kami</a>
             <a href="#">Bantuan</a>
         </div>
         <div class="nav-auth">
-            <a href="{{ route('dashboard') }}">Profil</a>
+            <a href="{{ route('Profil') }}">Profil</a>
             <a href="{{ route('chat.index') }}">Pesan</a>
             <a href="{{ route('products.create') }}" class="btn-jual">Jual Barang</a>
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
